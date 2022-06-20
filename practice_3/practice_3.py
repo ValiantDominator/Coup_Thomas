@@ -52,11 +52,26 @@ print(longestWord("hello world my name is Daniel"))
 # Recommendation: write some helper functions that are modular and easily
 #                 usable in your coup.py file you'll make later on.
 def coupResultParser (name_of_coup_file):
-    file.open
+    coupFile = open(name_of_coup_file)
+    rawtext = coupFile.read()
+    coupFile.close()
+    #turn string into list
+    print(rawtext)
+    textlines = rawtext.split("\n")
+    print(textlines)
+    actionline = textlines[1:-1]
+    players = textlines[0]
+    winner = textlines[-1]
+    return [actionline,players,winner]
 
 def gameResult (name_of_coup_file):
-    gametext = coupResultParser(name_of_coup_file)
+    [actionline,players,winner] = coupResultParser(name_of_coup_file)
+    print(actionline)
+    print(players)
+    print(winner)
 
+gameResult("game_a.coup")
+[actionline,players,winner] = coupResultParser("game_a.coup")
 # Problem 3
 # Build yourself a 'coup' directory and make a file called coup.py there.
 # Build a player class in coup.py
