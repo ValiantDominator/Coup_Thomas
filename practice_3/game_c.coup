@@ -1,0 +1,12 @@
+players: [trey, boo]
+trey income
+boo income
+trey assassinate boo
+boo discard assassin
+boo assassinate trey
+trey discard assassin
+trey tax
+boo income
+trey assassinate boo
+boo discard ambassador
+winner: trey

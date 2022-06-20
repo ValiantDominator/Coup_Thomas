@@ -1,0 +1,20 @@
+players: [a, b, c]
+a tax
+b tax
+c exchange
+a tax
+b tax
+c tax
+a coup c
+b coup c
+a tax
+b tax
+a tax
+b tax
+a coup b
+b coup a
+a discard duke
+a tax
+b tax
+a assassinate b
+winner: a

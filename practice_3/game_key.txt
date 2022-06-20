@@ -1,0 +1,8 @@
+a: valid
+b: invalid (check to make sure markus didn't steal 2 coins at line 13)
+c: valid
+d: invalid (trey doesn't have enough money for an assassin)
+e: valid
+f: invalid (player c keep acting)
+g: invalid (we don't see the discards)
+h: invalid (the players don't go in order)
