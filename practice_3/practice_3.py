@@ -106,18 +106,26 @@ def actionLineParser(actionline,playerdata,numplayers):
     # to the master fucntion.
     actionparts = actionline.split(" ")
     for x in range(numplayers):
-        if playerdata[1][0] == actionparts[0]:
+        if playerdata[x][0] == actionparts[0]:
             playerAData = playerdata[x]
             playerALocation = x
         if len(actionparts) == 3:
-            if playerdata[1][0] == actionparts[2]:
+            if playerdata[x][0] == actionparts[2]:
                 playerBData = playerdata[x]
                 playerBLocation = x
+        else:
+            ##nothing SHOULD happen to player B when there's no target
+            playerBData = playerdata[0]
+            playerBLocation = 0
     #now we have found our players! now we can make action
     action = actionparts[1]
-    [playerAData,playerBData,valid]=locals()[action](playerAData,playerBData)
-    playerdata[playerALocation]=playerAData
+    try:
+        [playerAData,playerBData,valid]=locals()[action](playerAData,playerBData)
+    except:
+        print(playerdata)
+        return [None,None]
     playerdata[playerBLocation]=playerBData
+    playerdata[playerALocation]=playerAData
     return [playerdata,valid]
     
 def gameResult (name_of_coup_file):
