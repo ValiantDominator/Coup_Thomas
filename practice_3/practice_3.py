@@ -30,7 +30,6 @@ def coupResultParser (name_of_coup_file):
     rawtext = coupFile.read()
     coupFile.close()
     #turn string into list
-    print(rawtext)
     textlines = rawtext.split("\n")
     try:
         textlines.remove(" ")
@@ -46,7 +45,31 @@ def coupResultParser (name_of_coup_file):
     winner = textlines[-1]
     return [actionline,players,winner]
 
-### DEFINE ACTIONS ###
+def income(playerAData,playerBData):
+    playerAData[2] += 1
+    valid = True
+    return [playerAData,playerBData,valid]
+
+def foreign_aid(playerAData,playerBData):
+    playerAData[2] += 2
+    valid = True
+    return [playerAData,playerBData,valid]
+
+def coup(playerAData,playerBData):
+    ###player a coups from player b
+    ###does not check for validity of the move
+    playerAData[2] += -7
+    playerBData[1] += -1
+    valid = True
+    if playerAData[2]<1 or playerBData[1]<1:
+        valid = False
+    return [playerAData,playerBData,valid]
+
+def tax(playerAData,playerBData):
+    playerAData[2] += 3
+    valid = True
+    return [playerAData,playerBData,valid]
+
 def steal(playerAData,playerBData):
     ###player a steals from player b
     ###returns the data of the 2 players
@@ -56,21 +79,75 @@ def steal(playerAData,playerBData):
         playerAData[2] += 1
         playerBData[2] += -1
         stealamount += 1
+    valid = True
+    if playerAData[2]<1 or playerBData[2]<1: ##spageti coad
+        valid = False
+    return [playerAData,playerBData,valid]
 
+def exchange(playerAData,playerBData):
+    playerAData[1] += 2
+    ###stuff happens
+    playerAData[1] += -2
+    valid = True
+    return [playerAData,playerBData,valid]
+
+def assassinate(playerAData,playerBData):
+    ###player a coups from player b
+    ###does not check for validity of the move
+    playerAData[2] += -3
+    playerBData[1] += -1
+    valid = True
+    if playerAData[2]<1 or playerBData[1]<1: ##spageti coad
+        valid = False
+    return [playerAData,playerBData,valid]
+
+def actionLineParser(actionline,playerdata,numplayers):
+    # turn line of file into an action, returns the new gamestate
+    # to the master fucntion.
+    actionparts = actionline.split(" ")
+    for x in range(numplayers):
+        if playerdata[1][0] == actionparts[0]:
+            playerAData = playerdata[x]
+            playerALocation = x
+        if len(actionparts) == 3:
+            if playerdata[1][0] == actionparts[2]:
+                playerBData = playerdata[x]
+                playerBLocation = x
+    #now we have found our players! now we can make action
+    action = actionparts[1]
+    [playerAData,playerBData,valid]=locals()[action](playerAData,playerBData)
+    playerdata[playerALocation]=playerAData
+    playerdata[playerBLocation]=playerBData
+    return [playerdata,valid]
+    
 def gameResult (name_of_coup_file):
-    [actionline,players,winner] = coupResultParser(name_of_coup_file)
+    [actionlines,plers,winner] = coupResultParser(name_of_coup_file)
     #translate players
+    players = plers.split(" ")
+    players.pop(0)
+    for i in range(len(players)):
+        players[i]=players[i].replace("[","")
+        players[i]=players[i].replace(",","")
+        players[i]=players[i].replace("]","")
     numplayers = len(players)
+    numactions = len(actionlines)
     ##now we have a list for player names, coin, and lives
     ##combine them into a list of lists
     ## PLAYER_NAME LIVES COINS
     playerdata = []
     for x in range(numplayers):
         playerdata.append([players[x],2,3])
+    x = 0
+    valid = True
+    while (x < numactions) and (valid == True):
+        x +=1
+        #run the game
+        [playerdata,valid] = actionLineParser(actionlines[x],playerdata,numplayers)
     
-
+    
+name_of_coup_file="game_a.coup"
 gameResult("game_a.coup")
-[actionline,players,winner] = coupResultParser("game_a.coup")
+[actionlines,players,winner] = coupResultParser("game_a.coup")
 
 # Problem 3
 # Build yourself a 'coup' directory and make a file called coup.py there.
