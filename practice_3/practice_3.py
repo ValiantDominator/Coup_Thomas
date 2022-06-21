@@ -1,33 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Tue Jun 14 09:39:49 2022
-
 @author: Thomas
-"""
-
-"""
-Objectives:
-    - Interactions between classes
-    - Defensive programming
-    - Write to a coup file
-"""
-
-"""
-Instructions:
-    - Copy this whole file into your own directory
-    - Remove the instructor's name from the top and place your name
-        - do the same with creation date
-    - Follow the problem specifications that follow and make a python
-      document that can run without any errors
-    - For a hope score, push your homework to github by Sunday at 8:00 PM
-        - If you submit after that, it's fine, but you get 0 marks if
-          I grade and don't find your homework
-"""
-
-
-"""
-Michael, Philip, and Thomas can skip problem 1 if they wish
 """
 # Problem 1
 # Write a function that takes a string as an argument
@@ -51,6 +23,8 @@ print(longestWord("hello world my name is Daniel"))
 # but you'll definitely implement a better game master with this knowledge.
 # Recommendation: write some helper functions that are modular and easily
 #                 usable in your coup.py file you'll make later on.
+
+#geez dood, it really seems that i should go ahead and go all out for this
 def coupResultParser (name_of_coup_file):
     coupFile = open(name_of_coup_file)
     rawtext = coupFile.read()
@@ -58,20 +32,46 @@ def coupResultParser (name_of_coup_file):
     #turn string into list
     print(rawtext)
     textlines = rawtext.split("\n")
-    print(textlines)
+    try:
+        textlines.remove(" ")
+    except:
+        None
+    try:
+        textlines.remove("")
+    except:
+        None
+    #this is ur fault danny ;)
     actionline = textlines[1:-1]
     players = textlines[0]
     winner = textlines[-1]
     return [actionline,players,winner]
 
+### DEFINE ACTIONS ###
+def steal(playerAData,playerBData):
+    ###player a steals from player b
+    ###returns the data of the 2 players
+    ###does not check for validity of the move
+    stealamount = 0
+    while (stealamount < 2) & ((playerBData)[2] > 0):
+        playerAData[2] += 1
+        playerBData[2] += -1
+        stealamount += 1
+
 def gameResult (name_of_coup_file):
     [actionline,players,winner] = coupResultParser(name_of_coup_file)
-    print(actionline)
-    print(players)
-    print(winner)
+    #translate players
+    numplayers = len(players)
+    ##now we have a list for player names, coin, and lives
+    ##combine them into a list of lists
+    ## PLAYER_NAME LIVES COINS
+    playerdata = []
+    for x in range(numplayers):
+        playerdata.append([players[x],2,3])
+    
 
 gameResult("game_a.coup")
 [actionline,players,winner] = coupResultParser("game_a.coup")
+
 # Problem 3
 # Build yourself a 'coup' directory and make a file called coup.py there.
 # Build a player class in coup.py
