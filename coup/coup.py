@@ -17,10 +17,15 @@ import random
 class Player:
     def __init__ (self):
         self.coins = 3
-        self.cards = "placeholder"
-        self.log = "placeholder"
+        self.cards = []
+        self.log = ""
     def act():
-        print('xd')
+        #determine what to do and return something like "tax"
+        #or "steal markus"
+        if self.coins >= 7:
+            return "coup"
+        else:
+            return "tax"
         
 class Deck:
     def __init__(self, cards=[]):
@@ -48,6 +53,12 @@ coupdeck = Deck()
 coupdeck.coupInit()
 coupdeck.show()
 
+def actionHandler(action_str):
+    #parse string
+    #choose action
+    #modify player data
+    print("ahhh")
+
 # Problem 5
 # Build a class Game_Master in coup.py
     # Data:
@@ -72,4 +83,5 @@ coupdeck.show()
     #actionHandler (run an action depending on what string is inputted)
 
 class Game_Master:
-    def __init__(self,filename="default_game.coup")
+    def __init__(self,filename="default_game.coup"):
+        self.filename = filename
