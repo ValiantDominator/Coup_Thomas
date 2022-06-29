@@ -168,12 +168,17 @@ gameResult("game_a.coup")
     # act()
         # If you have fewer than 7 coins, tax. Else, coup another player
         # You might have to parse the log to find another active player's name.
-
+#this is kinda confusing but ill interpret
+#we want to call player.act() to get that player's action
+#that player's action is caclulated in that act function based upon the log
+#the game writes to each players log each time something happensS
 
 # Problem 4
 # Copy over your deck class from practice 2 to coup.py
 # Add the draw() method, which returns the first (top) card in the deck
 # and then removes that card from the deck
+#EZ
+
 
 # Problem 5
 # Build a class Game_Master in coup.py
