@@ -1,0 +1,64 @@
+players: [boo, markus, trey]
+boo income
+markus steal boo
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus coup trey
+trey discard contessa
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus steal boo
+trey coup markus
+markus discard duke
+boo income
+markus steal trey
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus coup boo
+boo discard contessa
+trey income
+boo income
+markus steal trey
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus steal trey
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus coup trey
+trey discard ambassador
+boo income
+markus steal boo
+boo income
+markus steal boo
+boo income
+markus steal boo
+boo income
+markus steal boo
+boo income
+markus coup boo
+boo discard duke
+winner: markus
