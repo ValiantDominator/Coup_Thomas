@@ -1,11 +1,12 @@
-players: [me, beef]
-me exchange
+players: [beef, lazy_sullivan]
 beef tax
-me steal beef
-beef block_steal
-me challenge
-me discard ambassador
-beef assassinate me
-me challenge
-me discard assassin
-winner: beef
+lazy_sullivan challenge
+beef discard contessa
+lazy_sullivan tax
+beef income
+lazy_sullivan tax
+beef assassinate lazy_sullivan
+lazy_sullivan discard captain
+lazy_sullivan coup beef
+beef discard assassin
+winner: lazy_sullivan

@@ -9,6 +9,7 @@ import Coup
 import Markus
 import Trey
 import Beef
+import lazy_sullivan
 
 gm = Coup.Game_Master()
 
@@ -16,14 +17,17 @@ trey = Trey.Player_Trey("trey")
 boo = Trey.Player_Trey("boo")
 markus = Markus.Player_Markus()
 beef = Beef.Player_Beef()
+lazy_sullivan = lazy_sullivan.lsPlayer()
 
 wincounts_markus = 0
 wincounts_trey = 0
 wincounts_boo = 0
 wincounts_beef = 0
-for i in range(1):
-    gm.game([beef, markus], fname = "beefvmarkus.coup")
-    gamefile = open("beefvmarkus.coup")
+wincounts_lazy_sullivan = 0
+
+for i in range(1000):
+    gm.game([beef, lazy_sullivan], fname = "lazy_sullivantest.coup")
+    gamefile = open("lazy_sullivantest.coup")
     lines = gamefile.read().split('\n')
     winnerline = lines[-2]
     winner = winnerline.split()[1]
@@ -35,9 +39,12 @@ for i in range(1):
         wincounts_boo += 1
     elif winner == "beef":
         wincounts_beef += 1
+    elif winner == "lazy_sullivan":
+        wincounts_lazy_sullivan += 1
     gamefile.close()
     
-print("markus wins", wincounts_markus, "games")
+# print("markus wins", wincounts_markus, "games")
 # print("trey wins", wincounts_trey, "games")
 # print("boo wins", wincounts_boo, "games")
 print("beef wins", wincounts_beef, "games")
+print("lazy_sullivan wins", wincounts_lazy_sullivan, "games")

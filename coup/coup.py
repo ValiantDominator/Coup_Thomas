@@ -18,6 +18,7 @@ import Markus
 import Trey
 import Beef
 import Data_Demo_Beef
+import lazy_sullivan
 
 coup_actions = [
     "income",
@@ -534,9 +535,10 @@ if __name__ == '__main__':
     trey = Trey.Player_Trey("trey")
     markus = Markus.Player_Markus()
     beef = Data_Demo_Beef.Player_Beef()
+    lazy_sullivan = lazy_sullivan.lsPlayer()
     
     gm = Game_Master()
     
-    me_players = [humanPlayer, beef]
+    me_players = [lazy_sullivan, beef]
     
     gm.game(me_players, debug=False)
