@@ -1,0 +1,17 @@
+players: [joeyd, flyswatter]
+joeyd tax
+flyswatter steal joeyd
+joeyd block_steal
+joeyd tax
+flyswatter foreign_aid
+joeyd block_foreign_aid
+joeyd coup flyswatter
+flyswatter discard ambassador
+flyswatter income
+joeyd tax
+flyswatter income
+joeyd tax
+flyswatter income
+joeyd coup flyswatter
+flyswatter discard captain
+winner: joeyd

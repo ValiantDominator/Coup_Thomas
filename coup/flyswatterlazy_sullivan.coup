@@ -1,0 +1,10 @@
+players: [lazy_sullivan, flyswatter]
+lazy_sullivan steal flyswatter
+flyswatter challenge
+flyswatter discard duke
+flyswatter steal lazy_sullivan
+lazy_sullivan block_steal
+lazy_sullivan steal flyswatter
+flyswatter challenge
+flyswatter discard captain
+winner: lazy_sullivan

@@ -50,7 +50,6 @@ class Player_Beef:
             datafile.close()
         except FileNotFoundError:
             self.memory = {}
-        print(self.memory)
     def react(self, hint):
         if hint == "turn":
             game_info = self.get_game_info(my_turn = True)

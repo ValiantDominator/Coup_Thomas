@@ -1,0 +1,12 @@
+players: [lazy_sullivan, markus]
+lazy_sullivan income
+markus steal lazy_sullivan
+lazy_sullivan block_steal
+markus challenge
+markus discard contessa
+lazy_sullivan income
+markus steal lazy_sullivan
+lazy_sullivan block_steal
+markus challenge
+markus discard assassin
+winner: lazy_sullivan

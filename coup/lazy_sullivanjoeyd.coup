@@ -1,0 +1,17 @@
+players: [lazy_sullivan, joeyd]
+lazy_sullivan income
+joeyd tax
+lazy_sullivan assassinate joeyd
+joeyd discard captain
+joeyd tax
+lazy_sullivan income
+joeyd coup lazy_sullivan
+lazy_sullivan discard assassin
+lazy_sullivan income
+joeyd tax
+lazy_sullivan income
+joeyd tax
+lazy_sullivan income
+joeyd coup lazy_sullivan
+lazy_sullivan discard contessa
+winner: joeyd

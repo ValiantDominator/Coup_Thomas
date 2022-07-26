@@ -1,10 +1,63 @@
-players: [markus, beef]
-markus steal beef
-beef block_steal
-markus challenge
-markus discard assassin
-beef tax
-markus steal beef
-beef assassinate markus
-markus discard captain
-winner: beef
+players: [trey, boo, markus]
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus steal trey
+trey income
+boo income
+markus coup boo
+boo discard ambassador
+trey income
+boo income
+markus steal trey
+trey income
+boo income
+markus steal trey
+trey income
+boo income
+markus steal trey
+trey income
+boo income
+markus coup trey
+trey discard captain
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus steal trey
+trey income
+boo income
+markus steal trey
+trey income
+boo coup markus
+markus discard ambassador
+markus steal boo
+trey income
+boo income
+markus steal boo
+trey income
+boo income
+markus coup trey
+trey discard duke
+boo income
+markus steal boo
+boo income
+markus steal boo
+boo income
+markus steal boo
+boo income
+markus steal boo
+boo income
+markus steal boo
+boo income
+markus steal boo
+boo income
+markus coup boo
+boo discard contessa
+winner: markus

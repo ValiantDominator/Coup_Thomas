@@ -1,8 +1,12 @@
-players: [beef, lazy_sullivan]
+players: [lazy_sullivan, beef]
+lazy_sullivan tax
 beef tax
 lazy_sullivan challenge
-lazy_sullivan discard ambassador
+beef discard ambassador
 lazy_sullivan tax
-beef assassinate lazy_sullivan
-lazy_sullivan discard contessa
-winner: beef
+beef income
+lazy_sullivan tax
+beef income
+lazy_sullivan coup beef
+beef discard captain
+winner: lazy_sullivan

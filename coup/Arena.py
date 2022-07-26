@@ -9,7 +9,9 @@ import Coup
 import Markus
 import Trey
 import Beef
+import JoeyD
 import lazy_sullivan
+import flyswatter
 
 gm = Coup.Game_Master()
 
@@ -17,34 +19,32 @@ trey = Trey.Player_Trey("trey")
 boo = Trey.Player_Trey("boo")
 markus = Markus.Player_Markus()
 beef = Beef.Player_Beef()
+joeyd = JoeyD.Player_JoeyD()
 lazy_sullivan = lazy_sullivan.lsPlayer()
+flyswatter = flyswatter.Flyswatter()
 
-wincounts_markus = 0
-wincounts_trey = 0
-wincounts_boo = 0
-wincounts_beef = 0
-wincounts_lazy_sullivan = 0
+players = [flyswatter , lazy_sullivan]
 
-for i in range(1000):
-    gm.game([beef, lazy_sullivan], fname = "lazy_sullivantest.coup")
-    gamefile = open("lazy_sullivantest.coup")
+
+wincounts = {}
+fname = ""
+for player in players:
+    wincounts[player.name] = 0
+    fname += player.name
+wincounts["none"] = 0
+fname += ".coup"
+for i in range(100):
+    print("game #%d" % i)
+    gm.game(players, fname = fname)
+    gamefile = open(fname, "r")
     lines = gamefile.read().split('\n')
     winnerline = lines[-2]
     winner = winnerline.split()[1]
-    if winner == "markus":
-        wincounts_markus += 1
-    elif winner == "trey":
-        wincounts_trey += 1
-    elif winner == "boo":
-        wincounts_boo += 1
-    elif winner == "beef":
-        wincounts_beef += 1
-    elif winner == "lazy_sullivan":
-        wincounts_lazy_sullivan += 1
+    wincounts[winner] += 1
+
     gamefile.close()
-    
-# print("markus wins", wincounts_markus, "games")
-# print("trey wins", wincounts_trey, "games")
-# print("boo wins", wincounts_boo, "games")
-print("beef wins", wincounts_beef, "games")
-print("lazy_sullivan wins", wincounts_lazy_sullivan, "games")
+
+
+for player in players:
+    name = player.name
+    print("%s wins %d games" % (name, wincounts[name]))

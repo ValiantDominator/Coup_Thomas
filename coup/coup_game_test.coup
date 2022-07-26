@@ -1,12 +1,21 @@
-players: [beef, lazy_sullivan]
-beef tax
-lazy_sullivan challenge
-beef discard contessa
-lazy_sullivan tax
-beef income
-lazy_sullivan tax
-beef assassinate lazy_sullivan
-lazy_sullivan discard captain
-lazy_sullivan coup beef
-beef discard assassin
-winner: lazy_sullivan
+players: [joeyd, flyswatter]
+joeyd tax
+flyswatter income
+joeyd assassinate flyswatter
+flyswatter block_assassinate
+flyswatter assassinate joeyd
+joeyd discard assassin
+joeyd tax
+flyswatter income
+joeyd tax
+flyswatter income
+joeyd coup flyswatter
+flyswatter discard assassin
+flyswatter income
+joeyd tax
+flyswatter income
+joeyd tax
+flyswatter income
+joeyd coup flyswatter
+flyswatter discard contessa
+winner: joeyd

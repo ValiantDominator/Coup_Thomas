@@ -19,6 +19,8 @@ import Trey
 import Beef
 import Data_Demo_Beef
 import lazy_sullivan
+import JoeyD
+import flyswatter
 
 coup_actions = [
     "income",
@@ -292,7 +294,13 @@ class Game_Master:
         if (blocked ^ challenged):
             # blocked but not successfully challenged
             # or not blocked but successfully challenged
-            pass
+            
+            # Normally, do nothing. But there is one exception. An assassin
+            # still causes the player to lose 3 coins if it was blocked.
+            
+            if action == "assassinate" and blocked == True:
+                self.name_to_player(self.active_player_name).coins -= 3
+            
         else:
             # not blocked or successfully challenged
             # or blocked but the block was successfully challenged
@@ -510,11 +518,19 @@ class Game_Master:
     def game(self, players, fname = "coup_game_test.coup", debug = False):
         if self.game_init(players) == False:
             return # init failed, don't go forward with the game
+        turn_num = 0
         while len(self.active_player_names) > 1:
             self.turn()
+            turn_num += 1
+            if turn_num > 100:
+                break
+                debug = True
             if debug == True:
-                self.show(show_cards = True)
-        message = "winner: " + self.active_player_name
+                self.show(show_cards = True, show_log = True)
+        if turn_num > 100:
+            message = "winner: none"
+        else:
+            message = "winner: " + self.active_player_name
         self.broadcast(message)
         gamefile = open(fname, "w")
         gamefile.write(self.log)
@@ -536,9 +552,12 @@ if __name__ == '__main__':
     markus = Markus.Player_Markus()
     beef = Data_Demo_Beef.Player_Beef()
     lazy_sullivan = lazy_sullivan.lsPlayer()
+    joeyd = JoeyD.Player_JoeyD()
+    flyswatter = flyswatter.Flyswatter()
     
     gm = Game_Master()
     
-    me_players = [lazy_sullivan, beef]
+    me_players = [flyswatter, joeyd]
     
     gm.game(me_players, debug=False)
+    print(gm.log)

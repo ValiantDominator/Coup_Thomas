@@ -1,0 +1,33 @@
+players: [beef, markus, joeyd]
+beef tax
+markus steal beef
+joeyd income
+beef tax
+markus steal joeyd
+joeyd block_steal
+markus challenge
+markus discard assassin
+joeyd income
+beef tax
+markus steal beef
+joeyd income
+beef coup markus
+markus discard assassin
+joeyd income
+beef tax
+joeyd income
+beef tax
+joeyd coup beef
+beef discard contessa
+beef tax
+joeyd income
+beef coup joeyd
+joeyd discard captain
+joeyd income
+beef tax
+joeyd income
+beef tax
+joeyd income
+beef coup joeyd
+joeyd discard contessa
+winner: beef
