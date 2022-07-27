@@ -1,10 +1,10 @@
-players: [lazy_sullivan, flyswatter]
-lazy_sullivan steal flyswatter
-flyswatter challenge
-flyswatter discard duke
-flyswatter steal lazy_sullivan
-lazy_sullivan block_steal
-lazy_sullivan steal flyswatter
-flyswatter challenge
-flyswatter discard captain
-winner: lazy_sullivan
+players: [flyswatter, lazy_sullivan]
+flyswatter tax
+lazy_sullivan challenge
+lazy_sullivan discard captain
+lazy_sullivan tax
+flyswatter tax
+lazy_sullivan tax
+flyswatter coup lazy_sullivan
+lazy_sullivan discard duke
+winner: flyswatter

@@ -100,6 +100,11 @@ class Flyswatter:
         if self.coins >= 10:
             return ("coup " + self.find_target())
         
+        #Captain Cheese
+        if self.cards.count("captain") == 2:
+            print("captain force")
+            self.force_steal = True
+        
         #Assassinate
         if (self.coins >= 3 and "contessa" not in 
             self.assumed_opponent_cards[self.find_target()]):
@@ -107,6 +112,10 @@ class Flyswatter:
             return ("assassinate " + self.find_target())
         
         #Money Making
+        if self.force_steal:
+            self.force_challenge = True
+            return "steal " + self.find_target()
+        
         if "duke" in self.cards:
             return "tax"
         
@@ -117,10 +126,35 @@ class Flyswatter:
         if not duke_about:
             return "foreign_aid"
         
+        if "ambassador" in self.cards:
+            self.exchanged == True
+            return "exchange"
+        #Tardout
+        return "income"
+        
     def optimal_turn(self):
         if self.coins >= 10:
             return ("coup " + self.find_target())
-        return "income"
+        
+        if self.coins >= 7:
+            return ("coup " + self.find_target())
+        
+        #Assassinate
+        if (self.coins >= 3 and "contessa" not in 
+            self.assumed_opponent_cards[self.find_target()]
+            and "assassin" in self.cards and (random.randint(0,10)>3)):
+            return ("assassinate " + self.find_target())
+        
+        #Money making
+        if "duke" in self.cards:
+            return "tax"
+        
+        if ("captain" in self.cards and
+            "steal_blocker" not in self.assumed_opponent_cards
+            [self.find_target()]):
+            return "steal " + self.find_target()
+        
+        return "tax"
         
 
     def alpha_cb(self):
@@ -156,29 +190,21 @@ class Flyswatter:
         if self.la()["blocker"] != None and self.la()["actor"] == self.name:
             if self.force_challenge:
                 self.force_challenge = False
+                print("challenge forced")
                 return "challenge"
         
     
     def init_modes(self):
-        self.bsteal = True
         self.assumed_opponent_cards = {}
         self.known_cards = self.cards.copy()
+        self.force_steal = False
+        self.exchanged = False
         for i in self.opponents:
             self.assumed_opponent_cards[i] = []
-        
-        if True:
-            self.turn_mode = "honest"
-        if False:
-            self.turn_mode = "cheese"
-        if False:
-            self.turn_mode = "optimal"
-        
-        if True:
-            self.cb_mode = "alpha"
-        if True:
-            self.cb_mode = "bravo"
-        if False:
-            self.cb_mode = "charlie"
+            
+        self.turn_mode = self.winrate_simple_turn_mode()
+        self.cb_mode = self.winrate_simple_cb_mode()
+       
     
     def honest_block(self):
         action = self.la()["action"]
@@ -188,6 +214,26 @@ class Flyswatter:
             elif len(self.cards) == 2:
                 if ("block_" + action) in Couptils.card_abilities[self.cards[1]]:
                     return "block"
+                
+    def least_valuable_card(self):
+        #return duplicate if available
+        for card in self.card_types:
+            if self.cards.count(card) > 1:
+                return card
+            pass
+        
+        #return first card (priority sorted from lowest to highest)
+        if self.turn_mode == "honest":
+            my_priority = ["ambassador","assassin","contessa","captain","duke"]
+        if self.turn_mode == "cheese":
+            my_priority = ["ambassador","duke","contessa","captain","assassin"]
+        if self.turn_mode == "optimal":
+            my_priority = ["ambassador","assassin","captain","contessa","duke"]
+        for card in my_priority:
+            if card in self.cards:
+                return card
+        print("least_valuable_card tardout")
+        return self.cards[0]    
     
     def discard(self):
         return self.least_valuable_card()
@@ -213,7 +259,10 @@ class Flyswatter:
         discard_c = self.la()["discard_c"]
         if self.debug:
             print("reflect", actor, action, target, blocker, challenger)
-        #See if any of our actions were blocked and not challenged
+        #See if there are any dukes out there
+        if actor != self.name and action == "tax":
+            self.assumed_opponent_cards[actor].append("duke")
+        #See if any of our actions were blocked and not challenged        
         if actor == self.name:
             if blocker != None and challenger == None:
                 if action == "assassinate":
@@ -265,6 +314,63 @@ class Flyswatter:
                     if discard_c[challenger] in self.assumed_opponent_cards[challenger]:
                         self.assumed_opponent_cards[challenger].remove(discard_c[challenger])
 
+    def winrate_simple_turn_mode(self):
+        oppo = str(self.opponents)
+        if oppo not in self.memory:
+            return "honest"
+        games1 = 1 + (self.memory[oppo]["simple_matrix"]["wins"]["honest"]+
+                  self.memory[oppo]["simple_matrix"]["losses"]["honest"])
+        games2 = 1 + (self.memory[oppo]["simple_matrix"]["wins"]["cheese"]+
+                  self.memory[oppo]["simple_matrix"]["losses"]["cheese"])
+        games3 = 1 + (self.memory[oppo]["simple_matrix"]["wins"]["optimal"]+
+                  self.memory[oppo]["simple_matrix"]["losses"]["optimal"])
+        wr1 = self.memory[oppo]["simple_matrix"]["wins"]["honest"]/games1
+        wr2 = self.memory[oppo]["simple_matrix"]["wins"]["cheese"]/games2
+        wr3 = self.memory[oppo]["simple_matrix"]["wins"]["optimal"]/games3
+        if games1+games2+games3 < 100:
+            guess = random.randint(1,3)
+            if guess == 1:
+                return "honest"
+            if guess == 2:
+                return "cheese"
+            if guess == 3:
+                return "optimal"
+            
+        if wr1 >= wr2 and wr1 >= wr3:
+            return "honest"
+        if wr2 >= wr1 and wr2 >= wr3:
+            return "cheese"
+        if wr3 >= wr2 and wr3 >= wr1:
+            return "optimal"
+        
+    def winrate_simple_cb_mode(self):
+        oppo = str(self.opponents)
+        if oppo not in self.memory:
+            return "alpha"
+        games1 = 1 + (self.memory[oppo]["simple_matrix"]["wins"]["alpha"]+
+                  self.memory[oppo]["simple_matrix"]["losses"]["alpha"])
+        games2 = 1 + (self.memory[oppo]["simple_matrix"]["wins"]["bravo"]+
+                  self.memory[oppo]["simple_matrix"]["losses"]["bravo"])
+        games3 = 1 + (self.memory[oppo]["simple_matrix"]["wins"]["charlie"]+
+                  self.memory[oppo]["simple_matrix"]["losses"]["charlie"])
+        wr1 = self.memory[oppo]["simple_matrix"]["wins"]["alpha"]/games1
+        wr2 = self.memory[oppo]["simple_matrix"]["wins"]["bravo"]/games2
+        wr3 = self.memory[oppo]["simple_matrix"]["wins"]["charlie"]/games3
+        if games1+games2+games3 < 100:
+            guess = random.randint(1,3)
+            if guess == 1:
+                return "alpha"
+            if guess == 2:
+                return "bravo"
+            if guess == 3:
+                return "charlie"
+        if wr1 >= wr2 and wr1 >= wr3:
+            return "alpha"
+        if wr2 >= wr1 and wr2 >= wr3:
+            return "bravo"
+        if wr3 >= wr2 and wr3 >= wr1:
+            return "charlie"
+        
     def search_to_win_challenge(self):
         action = self.la()["action"]
         if (action in Couptils.card_abilities["duke"]
@@ -306,6 +412,12 @@ class Flyswatter:
         self.log += message
         self.log += "\n"
         if message[0:7] == "winner:":
+            #SHUT DOWN THE BOT
+            if self.name == message.split(" ")[1]:
+                self.iwin = True
+            else:
+                self.iwin = False
+            self.memorize_results()
             self.open_data_write(self.memory)
         elif message[0:8] == "players:":
             #INIT THE BOT
@@ -349,7 +461,37 @@ class Flyswatter:
         except:
             if self.debug:
                 print("Error at smart_log:", self.log)    
-
+    def memorize_results(self):
+        self.opponents.sort()
+        if str(self.opponents) not in self.memory:
+            self.memory[str(self.opponents)] = {"simple_matrix":
+              {"wins":{"honest": 0,"cheese": 0,"optimal": 0,
+                       "alpha": 0,"bravo": 0,"charlie": 0},
+              "losses":{"honest": 0,"cheese": 0,"optimal": 0,
+                        "alpha": 0,"bravo": 0,"charlie": 0}},
+             "nested_matrix": 
+                 {"wins": {"honest":{"alpha": 0,"bravo": 0,"charlie": 0},
+                  "cheese":{"alpha": 0,"bravo": 0,"charlie": 0},
+                  "optimal":{"alpha": 0,"bravo": 0,"charlie": 0}},
+                 "losses": {"honest":{"alpha": 0,"bravo": 0,"charlie": 0},
+                  "cheese":{"alpha": 0,"bravo": 0,"charlie": 0},
+                  "optimal":{"alpha": 0,"bravo": 0,"charlie": 0}}}}
+        if self.iwin:
+            result = "wins"
+        else:
+            result = "losses"
+            
+        if self.force_steal:
+            print("Win:", self.iwin)
+        
+        self.memory[str(self.opponents)]["simple_matrix"][
+            result][self.turn_mode] += 1
+        self.memory[str(self.opponents)]["simple_matrix"][
+            result][self.cb_mode] += 1
+        self.memory[str(self.opponents)]["nested_matrix"][
+            result][self.turn_mode][self.cb_mode] += 1
+            
+            
     def open_data_read(self):
         try:
             loadfile = open("flyswatter.pkl","rb")
@@ -372,6 +514,6 @@ class Flyswatter:
         pickle.dump(newdata, loadfile)
         loadfile.close()
         
-    def forget_memory(self):
+    def forget(self):
         self.open_data_write({})
         print("flyswatter has cleared his memory")

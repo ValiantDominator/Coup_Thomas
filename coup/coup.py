@@ -557,7 +557,7 @@ if __name__ == '__main__':
     
     gm = Game_Master()
     
-    me_players = [flyswatter, joeyd]
+    me_players = [flyswatter, beef]
     
     gm.game(me_players, debug=False)
     print(gm.log)

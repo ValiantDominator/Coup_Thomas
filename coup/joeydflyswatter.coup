@@ -1,0 +1,16 @@
+players: [flyswatter, joeyd]
+flyswatter tax
+joeyd income
+flyswatter tax
+joeyd assassinate flyswatter
+flyswatter discard captain
+flyswatter coup joeyd
+joeyd discard assassin
+joeyd income
+flyswatter tax
+joeyd income
+flyswatter tax
+joeyd income
+flyswatter coup joeyd
+joeyd discard ambassador
+winner: flyswatter

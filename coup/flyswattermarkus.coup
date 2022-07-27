@@ -1,9 +1,8 @@
-players: [markus, flyswatter]
-markus steal flyswatter
-flyswatter challenge
-markus discard duke
+players: [flyswatter, markus]
 flyswatter tax
 markus steal flyswatter
 flyswatter challenge
 markus discard contessa
+flyswatter assassinate markus
+markus discard ambassador
 winner: flyswatter

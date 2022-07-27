@@ -1,21 +1,18 @@
-players: [joeyd, flyswatter]
-joeyd tax
+players: [flyswatter, beef]
+flyswatter foreign_aid
+beef block_foreign_aid
+beef tax
 flyswatter income
-joeyd assassinate flyswatter
-flyswatter block_assassinate
-flyswatter assassinate joeyd
-joeyd discard assassin
-joeyd tax
-flyswatter income
-joeyd tax
-flyswatter income
-joeyd coup flyswatter
+beef tax
+flyswatter assassinate beef
+beef block_assassinate
+beef coup flyswatter
 flyswatter discard assassin
 flyswatter income
-joeyd tax
+beef tax
 flyswatter income
-joeyd tax
+beef tax
 flyswatter income
-joeyd coup flyswatter
+beef coup flyswatter
 flyswatter discard contessa
-winner: joeyd
+winner: beef
