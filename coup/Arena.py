@@ -23,7 +23,7 @@ joeyd = JoeyD.Player_JoeyD()
 lazy_sullivan = lazy_sullivan.lsPlayer()
 flyswatter = flyswatter.Flyswatter()
 
-players = [joeyd , flyswatter]
+players = [beef, markus , flyswatter]
 
 
 wincounts = {}

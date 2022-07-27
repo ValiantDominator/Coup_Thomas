@@ -34,6 +34,7 @@ class Flyswatter:
         self.coins = 0
         self.name = name
         self.force_challenge = False
+        self.stupid_counter = 0
     
     def react(self,hint):
         if hint == "turn":
@@ -301,40 +302,43 @@ class Flyswatter:
                 self.assumed_opponent_cards[target].remove(discard_a[target])
                 
         # someone discarded due to a challenge
-        if discard_c != {}:
-            # I got challenged and...
-            if actor == self.name and challenger != self.name:
-                # I won
-                if c_win == False:
-                    self.known_cards.append(discard_c[challenger])
-                    if discard_c[challenger] in self.assumed_opponent_cards[challenger]:
-                        self.assumed_opponent_cards[challenger].remove(discard_c[challenger])
-                # I lost
-                if c_win == True:
-                    # I lost a card and got no information
-                    pass
-            
-            # I challenged and...
-            if challenger == self.name:
-                # I won
-                if c_win:
-                    self.known_cards.append(discard_c[actor])
-                    if discard_c[actor] in self.assumed_opponent_cards[actor]:
-                        self.assumed_opponent_cards[actor].remove(discard_c[actor])
-                # I lost
-                if not c_win:
-                    # I lost a card and got no information
-                    pass
-            # FFA moment, I wasn't involved
-            if actor != self.name and blocker != self.name and challenger != self.name:
-                if not c_win:
-                    self.known_cards.append(discard_c[actor])
-                    if discard_c[actor] in self.assumed_opponent_cards[actor]:
-                        self.assumed_opponent_cards[actor].remove(discard_c[actor])
-                else:
-                    self.known_cards.append(discard_c[challenger])
-                    if discard_c[challenger] in self.assumed_opponent_cards[challenger]:
-                        self.assumed_opponent_cards[challenger].remove(discard_c[challenger])
+        try:
+            if discard_c != {}:
+                # I got challenged and...
+                if actor == self.name and challenger != self.name:
+                    # I won
+                    if c_win == False:
+                        self.known_cards.append(discard_c[challenger])
+                        if discard_c[challenger] in self.assumed_opponent_cards[challenger]:
+                            self.assumed_opponent_cards[challenger].remove(discard_c[challenger])
+                    # I lost
+                    if c_win == True:
+                        # I lost a card and got no information
+                        pass
+                
+                # I challenged and...
+                if challenger == self.name:
+                    # I won
+                    if c_win:
+                        self.known_cards.append(discard_c[actor])
+                        if discard_c[actor] in self.assumed_opponent_cards[actor]:
+                            self.assumed_opponent_cards[actor].remove(discard_c[actor])
+                    # I lost
+                    if not c_win:
+                        # I lost a card and got no information
+                        pass
+                # FFA moment, I wasn't involved
+                if actor != self.name and blocker != self.name and challenger != self.name:
+                    if not c_win:
+                        self.known_cards.append(discard_c[actor])
+                        if discard_c[actor] in self.assumed_opponent_cards[actor]:
+                            self.assumed_opponent_cards[actor].remove(discard_c[actor])
+                    else:
+                        self.known_cards.append(discard_c[challenger])
+                        if discard_c[challenger] in self.assumed_opponent_cards[challenger]:
+                            self.assumed_opponent_cards[challenger].remove(discard_c[challenger])
+        except:
+            self.stupid_counter += 1
 
     def winrate_simple_turn_mode(self):
         oppo = str(self.opponents)
