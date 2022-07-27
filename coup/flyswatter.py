@@ -102,7 +102,6 @@ class Flyswatter:
         
         #Captain Cheese
         if self.cards.count("captain") == 2:
-            print("captain force")
             self.force_steal = True
         
         #Assassinate
@@ -199,7 +198,6 @@ class Flyswatter:
         if self.la()["blocker"] != None and self.la()["actor"] == self.name:
             if self.force_challenge:
                 self.force_challenge = False
-                print("challenge forced")
                 return "challenge"
         actor = self.la()["actor"]
         action = self.la()["action"]
@@ -305,7 +303,7 @@ class Flyswatter:
         # someone discarded due to a challenge
         if discard_c != {}:
             # I got challenged and...
-            if actor == self.name:
+            if actor == self.name and challenger != self.name:
                 # I won
                 if c_win == False:
                     self.known_cards.append(discard_c[challenger])
@@ -328,7 +326,7 @@ class Flyswatter:
                     # I lost a card and got no information
                     pass
             # FFA moment, I wasn't involved
-            if actor != self.name and challenger != self.name:
+            if actor != self.name and blocker != self.name and challenger != self.name:
                 if not c_win:
                     self.known_cards.append(discard_c[actor])
                     if discard_c[actor] in self.assumed_opponent_cards[actor]:
@@ -351,7 +349,7 @@ class Flyswatter:
         wr1 = self.memory[oppo]["simple_matrix"]["wins"]["honest"]/games1
         wr2 = self.memory[oppo]["simple_matrix"]["wins"]["cheese"]/games2
         wr3 = self.memory[oppo]["simple_matrix"]["wins"]["optimal"]/games3
-        if games1+games2+games3 < 50:
+        if games1+games2+games3 < 100:
             guess = random.randint(1,3)
             if guess == 1:
                 return "honest"
@@ -380,7 +378,7 @@ class Flyswatter:
         wr1 = self.memory[oppo]["simple_matrix"]["wins"]["alpha"]/games1
         wr2 = self.memory[oppo]["simple_matrix"]["wins"]["bravo"]/games2
         wr3 = self.memory[oppo]["simple_matrix"]["wins"]["charlie"]/games3
-        if games1+games2+games3 < 50:
+        if games1+games2+games3 < 100:
             guess = random.randint(1,3)
             if guess == 1:
                 return "alpha"
@@ -504,9 +502,7 @@ class Flyswatter:
             result = "wins"
         else:
             result = "losses"
-            
-        if self.force_steal:
-            print("Win:", self.iwin)
+        
         
         self.memory[str(self.opponents)]["simple_matrix"][
             result][self.turn_mode] += 1

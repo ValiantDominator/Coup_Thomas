@@ -1,22 +1,29 @@
-players: [lazy_sullivan, flyswatter]
-lazy_sullivan tax
+players: [flyswatter, lazy_sullivan]
 flyswatter foreign_aid
 lazy_sullivan tax
+flyswatter foreign_aid
+lazy_sullivan assassinate flyswatter
+flyswatter block_assassinate
 flyswatter income
 lazy_sullivan tax
-flyswatter income
-lazy_sullivan coup flyswatter
+flyswatter challenge
 flyswatter discard contessa
-flyswatter income
-lazy_sullivan tax
 flyswatter coup lazy_sullivan
-lazy_sullivan discard duke
+lazy_sullivan discard assassin
+lazy_sullivan assassinate flyswatter
+flyswatter block_assassinate
+flyswatter income
 lazy_sullivan income
+flyswatter income
+lazy_sullivan assassinate flyswatter
+flyswatter block_assassinate
 flyswatter income
 lazy_sullivan income
 flyswatter income
 lazy_sullivan income
 flyswatter income
-lazy_sullivan coup flyswatter
-flyswatter discard contessa
+lazy_sullivan income
+flyswatter income
+lazy_sullivan assassinate flyswatter
+flyswatter discard ambassador
 winner: lazy_sullivan

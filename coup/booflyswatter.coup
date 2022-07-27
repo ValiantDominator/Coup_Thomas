@@ -1,0 +1,11 @@
+players: [flyswatter, boo]
+flyswatter foreign_aid
+boo income
+flyswatter assassinate boo
+boo discard ambassador
+boo income
+flyswatter foreign_aid
+boo income
+flyswatter assassinate boo
+boo discard contessa
+winner: flyswatter

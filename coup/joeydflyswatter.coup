@@ -1,26 +1,16 @@
-players: [joeyd, flyswatter]
+players: [flyswatter, joeyd]
+flyswatter tax
+joeyd tax
+flyswatter tax
+joeyd tax
+flyswatter coup joeyd
+joeyd discard duke
+joeyd coup flyswatter
+flyswatter discard duke
+flyswatter tax
 joeyd income
-flyswatter steal joeyd
-joeyd income
-flyswatter steal joeyd
-joeyd income
-flyswatter steal joeyd
+flyswatter tax
 joeyd income
 flyswatter coup joeyd
-joeyd discard assassin
-joeyd income
-flyswatter steal joeyd
-joeyd income
-flyswatter steal joeyd
-joeyd income
-flyswatter steal joeyd
-joeyd income
-flyswatter steal joeyd
-joeyd income
-flyswatter steal joeyd
-joeyd income
-flyswatter steal joeyd
-joeyd income
-flyswatter coup joeyd
-joeyd discard contessa
+joeyd discard captain
 winner: flyswatter

@@ -1,11 +1,17 @@
-players: [flyswatter, beef]
-flyswatter tax
-beef challenge
-flyswatter discard assassin
+players: [beef, flyswatter]
 beef tax
+flyswatter steal beef
+beef block_steal
+beef exchange
 flyswatter tax
+beef assassinate flyswatter
+flyswatter discard captain
+flyswatter tax
+beef tax
+flyswatter coup beef
+beef discard assassin
 beef tax
 flyswatter tax
 beef coup flyswatter
-flyswatter discard ambassador
+flyswatter discard contessa
 winner: beef
