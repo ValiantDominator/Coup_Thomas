@@ -1,17 +1,11 @@
-players: [beef, flyswatter]
+players: [flyswatter, beef]
+flyswatter tax
+beef challenge
+flyswatter discard assassin
 beef tax
 flyswatter tax
-beef assassinate flyswatter
-flyswatter discard contessa
+beef tax
 flyswatter tax
-beef income
-flyswatter coup beef
-beef discard assassin
-beef income
-flyswatter tax
-beef income
-flyswatter tax
-beef income
-flyswatter coup beef
-beef discard captain
-winner: flyswatter
+beef coup flyswatter
+flyswatter discard ambassador
+winner: beef

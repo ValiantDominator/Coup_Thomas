@@ -163,6 +163,11 @@ class Flyswatter:
         target = self.la()["target"]
         blocker = self.la()["blocker"]
         self.basic_cb()
+        if (target == self.name and action in Couptils.blockable_actions and 
+            random.randint(1,2) == 1 and blocker == None):
+            return "block"            
+        if random.randint(1,3) == 1 and action in Couptils.challengeable_actions:
+            return "challenge"
         return "pass"
  
     def bravo_cb(self):
@@ -182,6 +187,10 @@ class Flyswatter:
         target = self.la()["target"]
         blocker = self.la()["blocker"]
         self.basic_cb()
+        if action == "tax" and "duke" in self.cards:
+            return "challenge"
+        if action == "foreign_aid" and blocker == None:
+            return "block"
         return "pass"
         
     def basic_cb(self):
@@ -192,8 +201,23 @@ class Flyswatter:
                 self.force_challenge = False
                 print("challenge forced")
                 return "challenge"
+        actor = self.la()["actor"]
+        action = self.la()["action"]
+        target = self.la()["target"]
+        blocker = self.la()["blocker"]
+        if action == "foreign_aid" and "duke" in self.cards and blocker == None:
+            return "block"
+        if actor != self.name and (self.cards.count(self.repped_card(action)) == 2):
+            return "challenge"
+        if action == "assassinate" and target == self.name and len(self.cards) == 1:
+            return "block"
         
-    
+        
+    def repped_card(self,action):
+        for i in Couptils.card_abilities:
+            if action in Couptils.card_abilities[i]:
+                return i
+
     def init_modes(self):
         self.assumed_opponent_cards = {}
         self.known_cards = self.cards.copy()
@@ -327,7 +351,7 @@ class Flyswatter:
         wr1 = self.memory[oppo]["simple_matrix"]["wins"]["honest"]/games1
         wr2 = self.memory[oppo]["simple_matrix"]["wins"]["cheese"]/games2
         wr3 = self.memory[oppo]["simple_matrix"]["wins"]["optimal"]/games3
-        if games1+games2+games3 < 100:
+        if games1+games2+games3 < 50:
             guess = random.randint(1,3)
             if guess == 1:
                 return "honest"
@@ -356,7 +380,7 @@ class Flyswatter:
         wr1 = self.memory[oppo]["simple_matrix"]["wins"]["alpha"]/games1
         wr2 = self.memory[oppo]["simple_matrix"]["wins"]["bravo"]/games2
         wr3 = self.memory[oppo]["simple_matrix"]["wins"]["charlie"]/games3
-        if games1+games2+games3 < 100:
+        if games1+games2+games3 < 50:
             guess = random.randint(1,3)
             if guess == 1:
                 return "alpha"

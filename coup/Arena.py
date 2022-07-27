@@ -33,7 +33,7 @@ for player in players:
     fname += player.name
 wincounts["none"] = 0
 fname += ".coup"
-for i in range(100):
+for i in range(1000):
     print("game #%d" % i)
     gm.game(players, fname = fname)
     gamefile = open(fname, "r")

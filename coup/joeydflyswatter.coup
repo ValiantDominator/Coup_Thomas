@@ -1,16 +1,26 @@
-players: [flyswatter, joeyd]
-flyswatter tax
+players: [joeyd, flyswatter]
 joeyd income
-flyswatter tax
-joeyd assassinate flyswatter
-flyswatter discard captain
+flyswatter steal joeyd
+joeyd income
+flyswatter steal joeyd
+joeyd income
+flyswatter steal joeyd
+joeyd income
 flyswatter coup joeyd
 joeyd discard assassin
 joeyd income
-flyswatter tax
+flyswatter steal joeyd
 joeyd income
-flyswatter tax
+flyswatter steal joeyd
+joeyd income
+flyswatter steal joeyd
+joeyd income
+flyswatter steal joeyd
+joeyd income
+flyswatter steal joeyd
+joeyd income
+flyswatter steal joeyd
 joeyd income
 flyswatter coup joeyd
-joeyd discard ambassador
+joeyd discard contessa
 winner: flyswatter
