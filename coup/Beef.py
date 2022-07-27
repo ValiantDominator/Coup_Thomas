@@ -244,7 +244,7 @@ class Player_Beef:
                 blocked = False
                 challenge_success = False
                 challenged = False
-                if player == first_player:
+                if player == self.name:
                     turn += 1
                 cb_state["actor"] = player
                 cb_state["action"] = action

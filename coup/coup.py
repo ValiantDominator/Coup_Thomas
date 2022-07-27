@@ -555,9 +555,9 @@ if __name__ == '__main__':
     joeyd = JoeyD.Player_JoeyD()
     flyswatter = flyswatter.Flyswatter()
     
-    gm = Game_Master()
+    gm = Game_Master() 
     
-    me_players = [flyswatter, beef]
+    me_players = [lazy_sullivan, markus , flyswatter]
     
     gm.game(me_players, debug=False)
     print(gm.log)

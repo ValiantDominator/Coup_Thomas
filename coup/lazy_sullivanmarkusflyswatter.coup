@@ -1,0 +1,14 @@
+players: [flyswatter, markus, lazy_sullivan]
+flyswatter tax
+lazy_sullivan challenge
+lazy_sullivan discard ambassador
+markus steal flyswatter
+lazy_sullivan challenge
+lazy_sullivan discard duke
+flyswatter steal markus
+markus challenge
+markus discard assassin
+markus steal flyswatter
+flyswatter challenge
+markus discard contessa
+winner: flyswatter

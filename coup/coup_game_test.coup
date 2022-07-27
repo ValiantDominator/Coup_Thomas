@@ -1,18 +1,20 @@
-players: [flyswatter, beef]
-flyswatter foreign_aid
-beef block_foreign_aid
-beef tax
-flyswatter income
-beef tax
-flyswatter assassinate beef
-beef block_assassinate
-beef coup flyswatter
+players: [lazy_sullivan, markus, flyswatter]
+lazy_sullivan tax
+flyswatter challenge
 flyswatter discard assassin
+markus steal lazy_sullivan
+lazy_sullivan block_steal
+markus challenge
+markus discard captain
 flyswatter income
-beef tax
+lazy_sullivan exchange
+markus challenge
+markus discard captain
+flyswatter assassinate lazy_sullivan
+lazy_sullivan block_assassinate
+lazy_sullivan tax
 flyswatter income
-beef tax
-flyswatter income
-beef coup flyswatter
-flyswatter discard contessa
-winner: beef
+lazy_sullivan tax
+flyswatter challenge
+flyswatter discard assassin
+winner: lazy_sullivan

@@ -1,19 +1,17 @@
 players: [beef, flyswatter]
 beef tax
-flyswatter foreign_aid
-beef block_foreign_aid
-beef exchange
-flyswatter income
-beef tax
-flyswatter assassinate beef
+flyswatter tax
+beef income
+flyswatter tax
+beef income
+flyswatter coup beef
+beef discard contessa
+beef coup flyswatter
+flyswatter discard contessa
+flyswatter tax
+beef income
+flyswatter tax
+beef income
+flyswatter coup beef
 beef discard captain
-beef coup flyswatter
-flyswatter discard ambassador
-flyswatter income
-beef tax
-flyswatter income
-beef tax
-flyswatter income
-beef coup flyswatter
-flyswatter discard captain
-winner: beef
+winner: flyswatter

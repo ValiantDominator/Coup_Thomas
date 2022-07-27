@@ -1,22 +1,20 @@
-players: [beef, flyswatter, markus]
-beef tax
-flyswatter foreign_aid
+players: [flyswatter, markus, beef]
+flyswatter tax
 markus steal flyswatter
-flyswatter challenge
-flyswatter discard ambassador
-beef income
-flyswatter income
+flyswatter block_steal
+markus challenge
+flyswatter discard contessa
+beef tax
+flyswatter tax
+markus steal flyswatter
+beef exchange
+markus challenge
+markus discard contessa
+flyswatter tax
 markus steal beef
 beef block_steal
-markus challenge
-markus discard duke
-beef income
-flyswatter assassinate beef
-beef block_assassinate
-markus steal flyswatter
 flyswatter challenge
-markus discard duke
-flyswatter income
-beef coup flyswatter
-flyswatter discard assassin
+flyswatter discard duke
+beef assassinate markus
+markus discard ambassador
 winner: beef

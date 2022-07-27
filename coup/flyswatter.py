@@ -166,7 +166,7 @@ class Flyswatter:
         if (target == self.name and action in Couptils.blockable_actions and 
             random.randint(1,2) == 1 and blocker == None):
             return "block"            
-        if random.randint(1,3) == 1 and action in Couptils.challengeable_actions:
+        if random.randint(1,5) == 1 and action in Couptils.challengeable_actions:
             return "challenge"
         return "pass"
  
@@ -353,7 +353,7 @@ class Flyswatter:
         wr1 = self.memory[oppo]["simple_matrix"]["wins"]["honest"]/games1
         wr2 = self.memory[oppo]["simple_matrix"]["wins"]["cheese"]/games2
         wr3 = self.memory[oppo]["simple_matrix"]["wins"]["optimal"]/games3
-        if games1+games2+games3 < 100:
+        if games1+games2+games3 < 50:
             guess = random.randint(1,3)
             if guess == 1:
                 return "honest"
@@ -382,7 +382,9 @@ class Flyswatter:
         wr1 = self.memory[oppo]["simple_matrix"]["wins"]["alpha"]/games1
         wr2 = self.memory[oppo]["simple_matrix"]["wins"]["bravo"]/games2
         wr3 = self.memory[oppo]["simple_matrix"]["wins"]["charlie"]/games3
-        if games1+games2+games3 < 100:
+        if games1+games2+games3 > 150:
+            self.queue_forget == True
+        if games1+games2+games3 < 25:
             guess = random.randint(1,3)
             if guess == 1:
                 return "alpha"
@@ -514,6 +516,8 @@ class Flyswatter:
             result][self.cb_mode] += 1
         self.memory[str(self.opponents)]["nested_matrix"][
             result][self.turn_mode][self.cb_mode] += 1
+        if self.queue_forget:
+            self.memory = {}
             
             
     def open_data_read(self):
@@ -530,8 +534,8 @@ class Flyswatter:
             loadfile.close()
         self.game_dict = {}
         self.memory = mydata
+        self.queue_forget = False
         self.turns_taken_by_me = 0
-        self.nut_size = random.randint(1,10)
 
     def open_data_write(self,newdata):
         loadfile = open("flyswatter.pkl","wb")
