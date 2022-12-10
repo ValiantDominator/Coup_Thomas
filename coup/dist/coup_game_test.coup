@@ -1,0 +1,13 @@
+players: [me, trey]
+me tax
+trey income
+me tax
+trey income
+me coup trey
+trey discard duke
+trey income
+me tax
+trey income
+me assassinate trey
+trey discard captain
+winner: me

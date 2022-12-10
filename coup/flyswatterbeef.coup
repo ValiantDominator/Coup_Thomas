@@ -1,16 +1,15 @@
-players: [beef, flyswatter]
+players: [flyswatter, beef]
+flyswatter steal beef
+beef block_steal
+beef foreign_aid
+flyswatter block_foreign_aid
+flyswatter foreign_aid
 beef tax
-flyswatter tax
-beef income
-flyswatter tax
-beef income
-flyswatter coup beef
+flyswatter challenge
 beef discard contessa
-beef coup flyswatter
-flyswatter discard contessa
-flyswatter tax
+flyswatter foreign_aid
 beef income
-flyswatter tax
+flyswatter income
 beef income
 flyswatter coup beef
 beef discard captain

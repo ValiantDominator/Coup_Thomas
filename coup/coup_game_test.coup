@@ -1,20 +1,12 @@
-players: [lazy_sullivan, markus, flyswatter]
-lazy_sullivan tax
-flyswatter challenge
-flyswatter discard assassin
-markus steal lazy_sullivan
-lazy_sullivan block_steal
-markus challenge
-markus discard captain
-flyswatter income
-lazy_sullivan exchange
-markus challenge
-markus discard captain
-flyswatter assassinate lazy_sullivan
-lazy_sullivan block_assassinate
-lazy_sullivan tax
-flyswatter income
-lazy_sullivan tax
-flyswatter challenge
-flyswatter discard assassin
-winner: lazy_sullivan
+players: [trey, me]
+trey income
+me tax
+trey income
+me steal trey
+trey income
+me assassinate trey
+trey discard assassin
+trey income
+me assassinate trey
+trey discard captain
+winner: me

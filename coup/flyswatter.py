@@ -15,10 +15,6 @@ MACRO STRATEGY:
     -prefer to pick the winning strat
 
 TO DO:
-    -fill out 2 turn patterns
-    -fill out 2 cb patterns
-    -add DATA LOG and initiliazer
-    -add some randomness
     -optimize strats
 
 '''
@@ -69,6 +65,10 @@ class Flyswatter:
         if self.coins >= 7 and len(self.opponents) == 1:
             return ("coup " + self.find_target())
         
+        #Money making
+        if "duke" in self.cards:
+            return "tax"
+        
         #Assassinate
         if (self.coins >= 3 and "contessa" not in 
             self.assumed_opponent_cards[self.find_target()]
@@ -76,9 +76,6 @@ class Flyswatter:
             return ("assassinate " + self.find_target())
         
         #Money making
-        if "duke" in self.cards:
-            return "tax"
-        
         if ("captain" in self.cards and
             "steal_blocker" not in self.assumed_opponent_cards
             [self.find_target()]):
@@ -187,7 +184,7 @@ class Flyswatter:
         target = self.la()["target"]
         blocker = self.la()["blocker"]
         self.basic_cb()
-        if action == "tax" and "duke" in self.cards:
+        if action == "tax" and ("duke" in self.cards or random.randint(0,1) == 0):
             return "challenge"
         if action == "foreign_aid" and blocker == None:
             return "block"
@@ -384,6 +381,7 @@ class Flyswatter:
         wr3 = self.memory[oppo]["simple_matrix"]["wins"]["charlie"]/games3
         if games1+games2+games3 > 150:
             self.queue_forget == True
+            self.memory.clear()
         if games1+games2+games3 < 25:
             guess = random.randint(1,3)
             if guess == 1:
@@ -516,8 +514,6 @@ class Flyswatter:
             result][self.cb_mode] += 1
         self.memory[str(self.opponents)]["nested_matrix"][
             result][self.turn_mode][self.cb_mode] += 1
-        if self.queue_forget:
-            self.memory = {}
             
             
     def open_data_read(self):
@@ -538,6 +534,8 @@ class Flyswatter:
         self.turns_taken_by_me = 0
 
     def open_data_write(self,newdata):
+        if self.queue_forget:
+            newdata = {}
         loadfile = open("flyswatter.pkl","wb")
         pickle.dump(newdata, loadfile)
         loadfile.close()

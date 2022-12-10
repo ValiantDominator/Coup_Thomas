@@ -547,6 +547,15 @@ class Game_Master:
 # the run button on this file. If you use the Arena.py file, this code
 # won't run!
 if __name__ == '__main__':
+    listops = ['trey','markus','beef','lazy_sullivan','joeyd','flyswatter']
+    opp = ''
+    while opp not in listops:
+        print("Who do you wish to play against?")
+        print("Agents:", listops)
+        opp = input("Your choice: ")
+        if opp not in listops:
+            print(opp, "is not in the list, you must pick a valid opponent.")
+    
     humanPlayer = human_player.Player("me")
     trey = Trey.Player_Trey("trey")
     markus = Markus.Player_Markus()
@@ -557,7 +566,7 @@ if __name__ == '__main__':
     
     gm = Game_Master() 
     
-    me_players = [lazy_sullivan, markus , flyswatter]
+    me_players = [humanPlayer, locals()[opp]]
     
     gm.game(me_players, debug=False)
     print(gm.log)

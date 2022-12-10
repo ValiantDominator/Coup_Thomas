@@ -1,10 +1,15 @@
 players: [lazy_sullivan, beef]
-lazy_sullivan income
+lazy_sullivan steal beef
+beef block_steal
+beef exchange
+lazy_sullivan steal beef
+beef block_steal
 beef tax
 lazy_sullivan challenge
-lazy_sullivan discard ambassador
-lazy_sullivan assassinate beef
-beef discard ambassador
-beef assassinate lazy_sullivan
-lazy_sullivan discard assassin
+lazy_sullivan discard captain
+lazy_sullivan income
+beef foreign_aid
+lazy_sullivan income
+beef coup lazy_sullivan
+lazy_sullivan discard contessa
 winner: beef
